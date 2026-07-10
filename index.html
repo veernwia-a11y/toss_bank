@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>대출플래너 AI 시스템</title>
+<style>
+body{margin:0;background:#edf2f7;font-family:Arial,sans-serif}
+.wrap{max-width:430px;margin:20px auto;padding:14px}
+.card{background:#fff;border-radius:18px;box-shadow:0 8px 25px rgba(0,0,0,.08);padding:22px}
+.badge{display:inline-block;background:#0b6efd;color:#fff;padding:6px 12px;border-radius:999px;font-size:12px}
+h2{margin:12px 0 6px}
+.progress{height:8px;background:#e9ecef;border-radius:99px;overflow:hidden;margin:16px 0}
+.bar{height:100%;width:10%;background:#0b6efd;transition:.3s}
+label{display:block;margin-top:14px;font-weight:bold}
+input,select{width:100%;padding:12px;border:1px solid #d0d7de;border-radius:10px;margin-top:6px}
+button{width:100%;margin-top:18px;padding:13px;border:none;border-radius:10px;background:#0b6efd;color:#fff;font-size:16px;cursor:pointer}
+#done{display:none;text-align:center}
+.small{color:#666;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card" id="form">
+<span class="badge">🤖 대출플래너 AI SYSTEM</span>
+<h2>AI 상담 시작</h2>
+<p class="small">고객님의 조건에 맞는 상담을 위해 정보를 입력해 주세요.</p>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<label>성함</label><input id="name">
+<label>생년월일 (6자리)</label><input id="birth">
+<label>거주지역</label><input id="addr">
+<label>직업</label>
+<select id="job">
+<option>직장인</option><option>사업자</option><option>프리랜서</option><option>주부</option><option>무직</option>
+</select>
+<label>연락처</label><input id="phone">
+<label>통신사</label><select id="tel"><option>SKT</option><option>KT</option><option>LG U+</option><option>알뜰폰</option></select>
+<label>기대출 금액</label><input id="loan">
+<label>필요 자금</label><input id="need">
+
+<button onclick="finish()">AI 상담 접수</button>
+</div>
+
+<div class="card" id="done">
+<h2>✅ 접수 완료</h2>
+<p>입력된 내용을 복사하여 상담창에 붙여넣어 주세요.</p>
+<button onclick="copyData()">📋 상담내용 복사하기</button>
+</div>
+</div>
+<script>
+let fields=document.querySelectorAll("input,select");
+fields.forEach(f=>f.addEventListener("input",update));
+function update(){
+ let filled=0;fields.forEach(f=>{if(f.value)filled++;});
+ document.getElementById("bar").style.width=(filled/fields.length*100)+"%";
+}
+function finish(){
+ document.getElementById("form").style.display="none";
+ document.getElementById("done").style.display="block";
+}
+function copyData(){
+let t=`성함 : ${name.value}
+생년월일 : ${birth.value}
+거주지역 : ${addr.value}
+직업 : ${job.value}
+연락처 : ${phone.value}
+통신사 : ${tel.value}
+기대출 금액 : ${loan.value}
+필요 자금 : ${need.value}`;
+navigator.clipboard.writeText(t);
+alert("복사되었습니다.");
+}
+</script>
+</body></html>
