@@ -282,9 +282,7 @@ oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 <input id="jumin2"
 maxlength="7"
 placeholder="뒤 7자리"
-oninput="saveJumin(this)"
-onfocus="showRealJumin(this)"
-onblur="hideJumin(this)">
+oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 
 
 
@@ -302,9 +300,7 @@ onblur="hideJumin(this)">
 
 
 <input id="phone"
-placeholder="010-0000-0000"
-maxlength="13"
-oninput="phoneHyphen(this)">
+placeholder="010-0000-0000">
 
 
 
@@ -812,18 +808,10 @@ style="display:none;">
 
 </div>
 
-</div>
 
+</div>
 <script>
 
-
-let verified = false;
-
-
-// STEP1 → STEP2
-function nextStep1(){
-
-...
 
 // STEP1 → STEP2
 
@@ -1393,7 +1381,7 @@ document.getElementById("jumin1").value
 +
 "-"
 +
-realJumin2,
+document.getElementById("jumin2").value,
 
 
 phone: document.getElementById("phone").value,
@@ -1613,33 +1601,7 @@ function goFirst(){
 }
 </script>
 
-<script>
 
-function phoneHyphen(input){
-
-    let number = input.value.replace(/[^0-9]/g,"");
-
-    if(number.length < 4){
-
-        input.value = number;
-
-    }else if(number.length < 8){
-
-        input.value =
-        number.substr(0,3)+"-"+number.substr(3);
-
-    }else{
-
-        input.value =
-        number.substr(0,3)+"-"+number.substr(3,4)+"-"+number.substr(7,4);
-
-    }
-
-
-
-
-</script>
 </body>
 
 </html>
-
