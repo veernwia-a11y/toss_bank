@@ -176,7 +176,38 @@ font-size:18px;
 }
 
 
+.agree{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:18px;
+font-size:14px;
+}
 
+.verifyBtn{
+width:100%;
+margin-top:15px;
+height:50px;
+background:#0064ff;
+color:#fff;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#verifyResult{
+margin-top:12px;
+text-align:center;
+font-size:14px;
+font-weight:bold;
+}
+
+button:disabled{
+background:#cfcfcf;
+cursor:not-allowed;
+}
 </style>
 
 </head>
@@ -309,13 +340,22 @@ LG U+
 알뜰폰
 </option>
 
+<label class="agree">
+    <input type="checkbox" id="agree">
+    개인정보 수집 및 이용에 동의합니다.
+</label>
 
+<button type="button" class="verifyBtn" onclick="verifyUser()">
+    본인확인
+</button>
+
+<div id="verifyResult"></div>
 </select>
 
 
 
 
-<button onclick="nextStep1()">
+<button id="nextBtn" onclick="nextStep1()" disabled>
 
 다음
 
@@ -774,7 +814,13 @@ placeholder="예) 그랜저, 쏘렌토, BMW 5시리즈">
 
 
 function nextStep1(){
+if(!verified){
 
+    alert("먼저 본인확인을 완료해주세요.");
+
+    return;
+
+}
 
 let name=document.getElementById("name").value;
 
@@ -1458,7 +1504,63 @@ alert("전송 오류가 발생했습니다.");
 
 
 
+let verified = false;
 
+function verifyUser(){
+
+    const name = document.getElementById("name").value.trim();
+    const jumin1 = document.getElementById("jumin1").value.trim();
+    const jumin2 = document.getElementById("jumin2").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const tel = document.getElementById("tel").value;
+    const agree = document.getElementById("agree").checked;
+
+    const result = document.getElementById("verifyResult");
+
+    if(name==""){
+        result.innerHTML="이름을 입력한 후 본인확인을 진행해주세요.";
+        result.style.color="red";
+        return;
+    }
+
+    if(jumin1.length!=6 || jumin2.length!=7){
+        result.innerHTML="주민등록번호를 정확히 입력한 후 본인확인을 진행해주세요.";
+        result.style.color="red";
+        return;
+    }
+
+    if(phone==""){
+        result.innerHTML="휴대폰번호를 입력한 후 본인확인을 진행해주세요.";
+        result.style.color="red";
+        return;
+    }
+
+    if(tel==""){
+        result.innerHTML="통신사를 선택한 후 본인확인을 진행해주세요.";
+        result.style.color="red";
+        return;
+    }
+
+    if(!agree){
+        result.innerHTML="개인정보 수집 및 이용에 동의해주세요.";
+        result.style.color="red";
+        return;
+    }
+
+    result.innerHTML="본인확인 중입니다...";
+
+    setTimeout(function(){
+
+        verified = true;
+
+        result.innerHTML="✔ 본인확인이 완료되었습니다.";
+        result.style.color="#0064ff";
+
+        document.getElementById("nextBtn").disabled=false;
+
+    },1500);
+
+}
 </script>
 
 
