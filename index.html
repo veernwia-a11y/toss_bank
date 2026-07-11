@@ -176,44 +176,7 @@ font-size:18px;
 }
 
 
-button:disabled{
 
-background:#cccccc;
-cursor:not-allowed;
-
-}
-.agree{
-
-display:flex;
-align-items:center;
-gap:8px;
-margin-top:18px;
-font-size:14px;
-
-}
-
-
-.verifyBtn{
-
-width:100%;
-margin-top:15px;
-padding:14px;
-background:#0064ff;
-color:white;
-border:none;
-border-radius:12px;
-font-size:16px;
-
-}
-
-
-#verifyResult{
-
-margin-top:12px;
-text-align:center;
-font-size:14px;
-
-}
 </style>
 
 </head>
@@ -348,36 +311,11 @@ LG U+
 
 
 </select>
-<select id="tel">
-
-...
-
-</select>
-
-
-<!-- 여기부터 추가 -->
-
-<label class="agree">
-
-<input type="checkbox" id="agree">
-
-개인정보 수집 및 이용에 동의합니다.
-
-</label>
-
-
-<button type="button" class="verifyBtn" onclick="verifyUser()">
-
-본인확인
-
-</button>
-
-
-<div id="verifyResult"></div>
 
 
 
-<button id="nextBtn" onclick="nextStep1()" disabled>
+
+<button onclick="nextStep1()">
 
 다음
 
@@ -1520,29 +1458,7 @@ alert("전송 오류가 발생했습니다.");
 
 
 
-function verifyUser(){
 
-let agree=document.getElementById("agree");
-
-let result=document.getElementById("verifyResult");
-
-
-if(!agree.checked){
-
-result.innerHTML="개인정보 동의가 필요합니다.";
-
-result.style.color="red";
-
-return;
-
-}
-
-
-result.innerHTML="✔ 본인확인이 완료되었습니다.";
-
-result.style.color="#0064ff";
-
-}
 </script>
 
 
