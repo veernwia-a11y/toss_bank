@@ -205,6 +205,11 @@ background:#cccccc;
 cursor:not-allowed;
 
 }
+.verifyBtn{
+    position:relative;
+    z-index:9999;
+    pointer-events:auto;
+}
 </style>
 
 </head>
@@ -1565,7 +1570,7 @@ function verifyUser(){
 
 
     btn.innerHTML="본인확인 중...";
-    btn.disabled=true;
+    // btn.disabled=true;
 
 
     setTimeout(function(){
