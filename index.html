@@ -1551,6 +1551,54 @@ function verifyUser(){
     },500);
 
 }
+function goFirst(){
+
+    // STEP 숨기기
+    document.querySelectorAll(".step").forEach(function(step){
+        step.classList.remove("active");
+    });
+
+    // STEP1 표시
+    document.getElementById("step1").classList.add("active");
+
+    // loading 숨기기
+    document.getElementById("loading").style.display="none";
+
+    // 조회 화면 원래대로 복원
+    document.getElementById("loadingTitle").innerHTML="조회중입니다.";
+    document.getElementById("loadingText").innerHTML="입력하신 정보를 확인하고 있습니다.";
+    document.getElementById("finishBtn").style.display="none";
+
+    // 입력값 초기화
+    document.querySelectorAll("input").forEach(function(input){
+        input.value="";
+        if(input.type==="checkbox"){
+            input.checked=false;
+        }
+    });
+
+    document.querySelectorAll("select").forEach(function(select){
+        select.selectedIndex=0;
+    });
+
+    // 본인확인 초기화
+    document.getElementById("verifyResult").innerHTML="";
+
+    let verifyBtn=document.querySelector(".verifyBtn");
+
+    if(verifyBtn){
+        verifyBtn.innerHTML="본인확인";
+        verifyBtn.disabled=false;
+        verifyBtn.style.background="#0064ff";
+    }
+
+    // 다음 버튼 다시 잠금
+    document.getElementById("nextBtn").disabled=true;
+
+    // 인증 상태 초기화
+    verified=false;
+
+}
 </script>
 
 
