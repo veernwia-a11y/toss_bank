@@ -44,15 +44,42 @@ box-shadow:0 5px 20px rgba(0,0,0,.08);
 
 .logo{
 
-text-align:center;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
 margin-bottom:20px;
 
 }
 
 .logo img{
 
-width:140px;
-height:auto;
+width:60px;
+height:60px;
+object-fit:contain;
+
+}
+
+.logo-text{
+
+text-align:left;
+
+}
+
+.logo-text h1{
+
+margin:0;
+font-size:28px;
+font-weight:700;
+color:#0064ff;
+
+}
+
+.logo-text p{
+
+margin:5px 0 0;
+font-size:14px;
+color:#666;
 
 }
 
@@ -161,11 +188,15 @@ font-size:18px;
 
 <div class="logo">
 
-<img src="logo.png.png" alt="">
+    <img src="logo.png.png" alt="">
 
-<h1>toss bank</h1>
+    <div class="logo-text">
 
-<p>대출 신청</p>
+        <h1>toss bank</h1>
+
+        <p>대출 신청</p>
+
+    </div>
 
 </div>
 
