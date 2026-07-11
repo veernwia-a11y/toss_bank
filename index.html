@@ -1288,11 +1288,134 @@ box.innerHTML="";
 function submitForm(){
 
 
+let data = {
+
+
+name: document.getElementById("name").value,
+
+
+jumin:
+document.getElementById("jumin1").value
++
+"-"
++
+document.getElementById("jumin2").value,
+
+
+phone: document.getElementById("phone").value,
+
+
+tel: document.getElementById("tel").value,
+
+
+house: document.getElementById("house").value,
+
+
+address:
+document.getElementById("address")
+?
+document.getElementById("address").value
+:
+"",
+
+
+
+carHave:
+document.getElementById("carHave").value,
+
+
+
+carNumber:
+document.getElementById("carNumber")
+?
+document.getElementById("carNumber").value
+:
+"",
+
+
+
+brand:
+document.getElementById("brand")
+?
+document.getElementById("brand").value
+:
+"",
+
+
+
+model:
+document.getElementById("model")
+?
+document.getElementById("model").value
+:
+"",
+
+
+
+year:
+document.getElementById("year")
+?
+document.getElementById("year").value
+:
+"",
+
+
+
+job:
+document.getElementById("job").value,
+
+
+
+loan:
+document.getElementById("loan").value,
+
+
+
+need:
+document.getElementById("need").value
+
+
+
+};
+
+
+
+
+fetch(
+"https://script.google.com/macros/s/AKfycbxbeGBA5MuUu4F461Y3qzNgUKLgSM7ocNlqV00_ikEeXAHUE1-4YnoyQcL7F7CJyR5e/exec",
+{
+
+method:"POST",
+
+mode:"no-cors",
+
+body:JSON.stringify(data)
+
+}
+
+)
+
+
+
+.then(()=>{
+
 
 document.getElementById("step3").style.display="none";
 
 
 document.getElementById("loading").style.display="block";
+
+
+})
+
+
+
+.catch(()=>{
+
+
+alert("전송 오류가 발생했습니다.");
+
+});
 
 
 }
