@@ -2,218 +2,940 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>대출플래너 AI 시스템</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>toss bank</title>
 
 <style>
+
+*{
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
 body{
     margin:0;
-    background:#edf2f7;
-    font-family:Arial,sans-serif;
+    background:#f5f7fb;
 }
-.wrap{
+
+.container{
     max-width:430px;
-    margin:20px auto;
-    padding:14px;
+    margin:auto;
+    padding:20px;
 }
+
 .card{
-    background:#fff;
-    border-radius:18px;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
-    padding:22px;
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
-.badge{
-    display:inline-block;
-    background:#0b6efd;
-    color:#fff;
-    padding:6px 12px;
-    border-radius:999px;
-    font-size:12px;
+
+
+.logo{
+    font-size:26px;
+    font-weight:800;
+    color:#0064ff;
 }
-h2{
-    margin:12px 0 6px;
+
+.subtitle{
+    margin-top:8px;
+    color:#666;
+    font-size:14px;
 }
+
+
 .progress{
+    margin:25px 0;
     height:8px;
-    background:#e9ecef;
-    border-radius:99px;
-    overflow:hidden;
-    margin:16px 0;
+    background:#e9edf5;
+    border-radius:20px;
 }
-.bar{
+
+.progress-bar{
     height:100%;
-    width:0%;
-    background:#0b6efd;
-    transition:.3s;
+    width:33%;
+    background:#0064ff;
+    border-radius:20px;
 }
+
+
+.step{
+    display:none;
+}
+
+.step.active{
+    display:block;
+}
+
+
+h2{
+    font-size:22px;
+}
+
+
 label{
     display:block;
-    margin-top:14px;
-    font-weight:bold;
-}
-input,select{
-    width:100%;
-    padding:12px;
-    border:1px solid #d0d7de;
-    border-radius:10px;
-    margin-top:6px;
-    box-sizing:border-box;
-}
-button{
-    width:100%;
     margin-top:18px;
-    padding:13px;
-    border:none;
-    border-radius:10px;
-    background:#0b6efd;
-    color:#fff;
-    font-size:16px;
-    cursor:pointer;
+    font-weight:600;
 }
-button:hover{
-    background:#0958d9;
+
+
+input,
+select{
+
+    width:100%;
+    padding:15px;
+
+    margin-top:8px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:15px;
+
 }
-#done{
-    display:none;
-    text-align:center;
+
+
+button{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:14px;
+
+    background:#0064ff;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
 }
-.small{
-    color:#666;
+
+
+.notice{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    background:#f1f6ff;
+
+    border-radius:12px;
+
     font-size:13px;
+
+    color:#555;
+
 }
+
+
+.error{
+
+color:red;
+
+font-size:13px;
+
+margin-top:10px;
+
+display:none;
+
+}
+
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="wrap">
 
-<div class="card" id="form">
+<div class="container">
 
-<span class="badge">🤖 대출플래너 AI SYSTEM</span>
 
-<h2>AI 상담 시작</h2>
+<div class="card">
 
-<p class="small">
-고객님의 조건에 맞는 상담을 위해 정보를 입력해 주세요.
-</p>
+
+<div class="logo">
+금융 상담센터
+</div>
+
+<div class="subtitle">
+빠르고 간편한 상담 신청 서비스
+</div>
+
 
 <div class="progress">
-<div class="bar" id="bar"></div>
+
+<div class="progress-bar" id="progress"></div>
+
 </div>
 
-<label>성함</label>
-<input id="customerName" placeholder="홍길동">
 
-<label>생년월일 (6자리)</label>
-<input id="birth" placeholder="900101">
 
-<label>거주지역</label>
-<input id="addr" placeholder="서울">
+<!-- STEP 1 -->
 
-<label>직업</label>
-<select id="job">
-<option>직장인</option>
-<option>사업자</option>
-<option>프리랜서</option>
-<option>주부</option>
-<option>무직</option>
+<div class="step active" id="step1">
+
+
+<h2>
+기본 정보를 입력해주세요
+</h2>
+
+
+
+<label>
+성함
+</label>
+
+<input 
+id="name"
+placeholder="홍길동">
+
+
+
+<label>
+주민등록번호 앞 6자리
+</label>
+
+<input 
+id="birth"
+maxlength="6"
+placeholder="900101">
+
+
+
+<label>
+휴대폰번호
+</label>
+
+<input 
+id="phone"
+placeholder="01012345678">
+
+
+
+<label>
+통신사
+</label>
+
+
+<select id="carrier">
+
+<option value="">
+선택하세요
+</option>
+
+<option>
+SKT
+</option>
+
+<option>
+KT
+</option>
+
+<option>
+LG U+
+</option>
+
+<option>
+알뜰폰
+</option>
+
+
 </select>
 
-<label>연락처</label>
-<input id="phone" placeholder="01012345678">
 
-<label>통신사</label>
-<select id="tel">
-<option>SKT</option>
-<option>KT</option>
-<option>LG U+</option>
-<option>알뜰폰</option>
+<div class="error" id="error1">
+필수 정보를 모두 입력해주세요.
+</div>
+
+
+
+<button onclick="nextStep()">
+
+다음
+
+</button>
+
+
+</div>
+
+
+
+<!-- STEP 2 -->
+
+<div class="step" id="step2">
+
+<h2>
+거주 및 차량 정보를 입력해주세요
+</h2>
+
+
+<label>
+주거형태
+</label>
+
+<select id="house">
+
+<option value="">
+선택하세요
+</option>
+
+<option>
+자가
+</option>
+
+<option>
+전세
+</option>
+
+<option>
+월세
+</option>
+
+<option>
+기타
+</option>
+
 </select>
 
-<label>기대출 금액</label>
-<input id="loan" placeholder="3000만원">
 
-<label>필요 자금</label>
-<input id="need" placeholder="1000만원">
 
-<button onclick="finish()">AI 상담 접수</button>
+<label>
+차량 보유 여부
+</label>
 
-</div>
+<select id="carHave" onchange="carToggle()">
 
-<div class="card" id="done">
+<option value="">
+선택하세요
+</option>
 
-<h2>✅ 접수 완료</h2>
+<option value="보유">
+보유
+</option>
 
-<p>입력된 내용을 복사하여 상담창에 붙여넣어 주세요.</p>
+<option value="미보유">
+미보유
+</option>
 
-<button onclick="copyData()">📋 상담내용 복사하기</button>
+</select>
 
-</div>
 
-</div>
 
-<script>
+<!-- 차량 정보 -->
 
-const fields=document.querySelectorAll("input,select");
+<div id="carInfo" style="display:none;">
 
-fields.forEach(f=>{
-    f.addEventListener("input",update);
+
+<label>
+차량번호
+</label>
+
+<input 
+id="carNumber"
+placeholder="예) 12가3456">
+
+
+
+<label>
+제조사
+</label>
+
+
+<select id="brand" onchange="changeModel()">
+
+
+<option value="">
+선택하세요
+</option>
+
+
+<option value="현대">
+현대
+</option>
+
+<option value="기아">
+기아
+</option>
+
+<option value="제네시스">
+제네시스
+</option>
+
+<option value="BMW">
+BMW
+</option>
+
+<option value="벤츠">
+벤츠
+</option>
+
+<option value="아우디">
+아우디
+</option>
+
+<option value="테슬라">
+테슬라
+</option>
+
+
+</select>
+
+
+
+
+<label>
+차종
+</label>
+
+
+<select id="model">
+
+
+<option>
+제조사를 먼저 선택하세요
+</option>
+
+
+</select>
+
+
+
+
+<label>
+연식
+</label>
+
+
+<select id="year">
+
+<option value="">
+선택하세요
+</option>
+
+// 차량 표시
+
+function carToggle(){
+
+let value=document.getElementById("carHave").value;
+
+let box=document.getElementById("carInfo");
+
+
+if(value==="보유"){
+
+box.style.display="block";
+
+}else{
+
+box.style.display="none";
+
+}
+
+}
+
+
+
+// 차종 데이터
+
+const carData={
+
+"현대":[
+"아반떼",
+"쏘나타",
+"그랜저",
+"투싼",
+"싼타페",
+"팰리세이드",
+"아이오닉5",
+"아이오닉6"
+],
+
+"기아":[
+"K3",
+"K5",
+"K8",
+"쏘렌토",
+"스포티지",
+"카니발",
+"EV6"
+],
+
+"제네시스":[
+"G70",
+"G80",
+"G90",
+"GV70",
+"GV80"
+],
+
+"BMW":[
+"3시리즈",
+"5시리즈",
+"7시리즈",
+"X3",
+"X5"
+],
+
+"벤츠":[
+"C클래스",
+"E클래스",
+"S클래스",
+"GLC",
+"G바겐"
+],
+
+"아우디":[
+"A4",
+"A6",
+"A8",
+"Q5",
+"Q7"
+],
+
+"테슬라":[
+"Model3",
+"ModelY",
+"ModelS",
+"ModelX"
+]
+
+};
+
+
+
+
+// 제조사 선택하면 차종 변경
+
+function changeModel(){
+
+
+let brand=document.getElementById("brand").value;
+
+let model=document.getElementById("model");
+
+
+model.innerHTML="";
+
+
+if(carData[brand]){
+
+
+carData[brand].forEach(function(item){
+
+
+let option=document.createElement("option");
+
+option.text=item;
+
+model.appendChild(option);
+
+
 });
 
-function update(){
 
-    let filled=0;
+}
 
-    fields.forEach(f=>{
-        if(f.value.trim()!=""){
-            filled++;
+}
+
+
+
+
+// 연식 생성
+
+let year=document.getElementById("year");
+
+
+for(let i=new Date().getFullYear(); i>=2000; i--){
+
+
+let option=document.createElement("option");
+
+option.text=i+"년";
+
+option.value=i;
+
+
+year.appendChild(option);
+
+
+}
+</select>
+
+
+
+</div>
+
+
+
+<div class="error" id="error2">
+
+필수 정보를 모두 입력해주세요.
+
+</div>
+
+
+
+<button onclick="prevStep()">
+이전
+</button>
+
+
+<button onclick="nextStep2()">
+
+다음
+
+</button>
+
+
+
+</div>
+<!-- STEP 3 -->
+
+<div class="step" id="step3">
+
+<h2>
+대출 정보를 입력해주세요
+</h2>
+
+
+<label>
+직업
+</label>
+
+<select id="job">
+
+<option value="">
+선택하세요
+</option>
+
+<option>
+직장인
+</option>
+
+<option>
+개인사업자
+</option>
+
+<option>
+법인사업자
+</option>
+
+<option>
+프리랜서
+</option>
+
+<option>
+공무원
+</option>
+
+<option>
+군인
+</option>
+
+<option>
+주부
+</option>
+
+<option>
+무직
+</option>
+
+<option>
+기타
+</option>
+
+</select>
+
+
+
+<label>
+연소득
+</label>
+
+<select id="income">
+
+<option value="">
+선택하세요
+</option>
+
+<option>
+없음
+</option>
+
+<option>
+3,000만원 이하
+</option>
+
+<option>
+3,000만원~5,000만원
+</option>
+
+<option>
+5,000만원~7,000만원
+</option>
+
+<option>
+7,000만원 이상
+</option>
+
+</select>
+
+
+
+<label>
+기대출 금액
+</label>
+
+<select id="loan">
+
+<option value="">
+선택하세요
+</option>
+
+<option>
+없음
+</option>
+
+<option>
+1,000만원 이하
+</option>
+
+<option>
+1,000만원~3,000만원
+</option>
+
+<option>
+3,000만원~5,000만원
+</option>
+
+<option>
+5,000만원 이상
+</option>
+
+</select>
+
+
+
+<label>
+필요 자금
+</label>
+
+<select id="need">
+
+<option value="">
+선택하세요
+</option>
+
+<option>
+500만원 이하
+</option>
+
+<option>
+500만원~1,000만원
+</option>
+
+<option>
+1,000만원~3,000만원
+</option>
+
+<option>
+3,000만원 이상
+</option>
+
+</select>
+
+
+
+<label>
+개인정보 수집 동의
+</label>
+
+
+<select id="agree">
+
+<option value="">
+선택하세요
+</option>
+
+<option>
+동의합니다
+</option>
+
+</select>
+
+
+
+<div class="error" id="error3">
+
+필수 정보를 모두 입력해주세요.
+
+</div>
+
+
+
+<button onclick="prevStep3()">
+
+이전
+
+</button>
+
+
+<button onclick="submitForm()">
+
+조회하기
+
+</button>
+
+
+</div>
+
+    
+<script>
+
+let currentStep = 1;
+
+
+// 다음 버튼
+function nextStep(){
+
+    if(!checkStep1()){
+        return;
+    }
+
+    document.getElementById("step1").classList.remove("active");
+    document.getElementById("step2").classList.add("active");
+
+    currentStep = 2;
+
+    document.getElementById("progress").style.width="66%";
+}
+
+
+
+// STEP2 다음
+function nextStep2(){
+
+    let house = document.getElementById("house").value;
+    let car = document.getElementById("carHave").value;
+
+
+    if(house=="" || car==""){
+
+        document.getElementById("error2").style.display="block";
+
+        return;
+    }
+
+
+    // 차량 보유 선택 시 차량정보 체크
+
+    if(car=="보유"){
+
+        let number =
+        document.getElementById("carNumber").value;
+
+        let brand =
+        document.getElementById("brand").value;
+
+
+        if(number=="" || brand==""){
+
+            document.getElementById("error2").style.display="block";
+
+            return;
+
         }
-    });
 
-    document.getElementById("bar").style.width=
-    (filled/fields.length*100)+"%";
+    }
+
+
+
+    document.getElementById("step2").classList.remove("active");
+
+    document.getElementById("step3").classList.add("active");
+
+
+    currentStep=3;
+
+    document.getElementById("progress").style.width="100%";
 
 }
 
-function finish(){
 
-    document.getElementById("form").style.display="none";
-    document.getElementById("done").style.display="block";
+
+// STEP1 체크
+
+function checkStep1(){
+
+let name=document.getElementById("name").value;
+let birth=document.getElementById("birth").value;
+let phone=document.getElementById("phone").value;
+let carrier=document.getElementById("carrier").value;
+
+
+if(
+name=="" ||
+birth=="" ||
+phone=="" ||
+carrier==""
+){
+
+document.getElementById("error1").style.display="block";
+
+return false;
 
 }
 
-function copyData(){
 
-    const customerName=document.getElementById("customerName").value;
-    const birth=document.getElementById("birth").value;
-    const addr=document.getElementById("addr").value;
-    const job=document.getElementById("job").value;
-    const phone=document.getElementById("phone").value;
-    const tel=document.getElementById("tel").value;
-    const loan=document.getElementById("loan").value;
-    const need=document.getElementById("need").value;
+return true;
 
-    const text=`성함 : ${customerName}
-생년월일 : ${birth}
-거주지역 : ${addr}
-직업 : ${job}
-연락처 : ${phone}
-통신사 : ${tel}
-기대출 금액 : ${loan}
-필요 자금 : ${need}`;
+}
 
-    navigator.clipboard.writeText(text)
-    .then(()=>{
-        alert("상담 내용이 복사되었습니다.");
-    })
-    .catch(()=>{
-        alert("복사에 실패했습니다.");
-    });
+
+
+// 이전 STEP
+
+function prevStep(){
+
+document.getElementById("step2").classList.remove("active");
+
+document.getElementById("step1").classList.add("active");
+
+
+document.getElementById("progress").style.width="33%";
+
+}
+
+
+
+// STEP3 이전
+
+function prevStep3(){
+
+document.getElementById("step3").classList.remove("active");
+
+document.getElementById("step2").classList.add("active");
+
+
+document.getElementById("progress").style.width="66%";
 
 }
 
 </script>
 
+
 </body>
+
 </html>
