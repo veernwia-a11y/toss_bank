@@ -1460,16 +1460,6 @@ document.getElementById("need").value
 
 
 
-// 신청 버튼 누르면 바로 조회 화면으로 이동
-
-document.getElementById("step3").style.display="none";
-
-document.getElementById("loading").style.display="block";
-
-
-
-// 그 다음 백그라운드에서 전송
-
 fetch(
 "https://script.google.com/macros/s/AKfycby7CQavpbVlvC_uhi26x9a8W193Weq8zupMY9QN9GEyxDHs_5KaavZ-Wew6j8H81MZz/exec",
 {
@@ -1482,21 +1472,20 @@ body:JSON.stringify(data)
 
 }
 
-).catch(()=>{
-
-alert("전송 중 오류가 발생했습니다.");
-
-});
+)
 
 
-.catch(()=>{
+
+.then(()=>{
 
 
-alert("전송 오류가 발생했습니다.");
-
-});
+document.getElementById("step3").style.display="none";
 
 
+document.getElementById("loading").style.display="block";
+
+
+})
 }
 
 
