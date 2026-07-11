@@ -815,33 +815,7 @@ style="display:none;">
 </div>
 
 <script>
-function phoneHyphen(input){
 
-    console.log("휴대폰 함수 실행");
-
-    let number = input.value.replace(/[^0-9]/g,"");
-
-    if(number.length < 4){
-
-        input.value = number;
-
-    }else if(number.length < 8){
-
-        input.value =
-        number.substr(0,3) +
-        "-" +
-        number.substr(3);
-
-    }else{
-
-        input.value =
-        number.substr(0,3) +
-        "-" +
-        number.substr(3,4) +
-        "-" +
-        number.substr(7,4);
-
-    }
 
 }
 function saveJumin(input){
@@ -1667,7 +1641,31 @@ function goFirst(){
 }
 </script>
 
+<script>
 
+function phoneHyphen(input){
+
+    let number = input.value.replace(/[^0-9]/g,"");
+
+    if(number.length < 4){
+
+        input.value = number;
+
+    }else if(number.length < 8){
+
+        input.value =
+        number.substr(0,3)+"-"+number.substr(3);
+
+    }else{
+
+        input.value =
+        number.substr(0,3)+"-"+number.substr(3,4)+"-"+number.substr(7,4);
+
+    }
+
+}
+
+</script>
 </body>
 
 </html>
