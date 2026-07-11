@@ -199,6 +199,12 @@ result.innerHTML="✔ 본인확인이 완료되었습니다.";
 result.style.color="#0064ff";
 
 }
+button:disabled{
+
+background:#cccccc;
+cursor:not-allowed;
+
+}
 </style>
 
 </head>
@@ -353,7 +359,7 @@ LG U+
 <div id="verifyResult"></div>
 
 
-<button onclick="nextStep1()">
+<button id="nextBtn" onclick="nextStep1()" disabled>
 
 다음
 
@@ -784,15 +790,19 @@ placeholder="예) 그랜저, 쏘렌토, BMW 5시리즈">
 <div class="loading" id="loading">
 
 
-<h2>
+<h2 id="loadingTitle">
 조회중입니다.
 </h2>
 
 
-<p>
+<p id="loadingText">
 입력하신 정보를 확인하고 있습니다.
 </p>
 
+
+<button id="finishBtn" onclick="goFirst()" style="display:none;">
+확인
+</button>
 
 
 </div>
@@ -816,7 +826,13 @@ placeholder="예) 그랜저, 쏘렌토, BMW 5시리즈">
 
 
 function nextStep1(){
+if(document.getElementById("nextBtn").disabled){
 
+alert("먼저 본인확인을 완료해주세요.");
+
+return;
+
+}
 
 let name=document.getElementById("name").value;
 
@@ -1502,22 +1518,152 @@ alert("전송 오류가 발생했습니다.");
 
 function verifyUser(){
 
+    const name = document.getElementById("name");
+    const jumin1 = document.getElementById("jumin1");
+    const jumin2 = document.getElementById("jumin2");
+    const phone = document.getElementById("phone");
+    const tel = document.getElementById("tel");
     const agree = document.getElementById("agree");
+
     const result = document.getElementById("verifyResult");
+    const btn = document.querySelector(".verifyBtn");
 
-    if(!agree.checked){
 
-        result.innerHTML = "⚠ 개인정보 수집 및 이용에 동의해주세요.";
-        result.style.color = "red";
+    if(name.value.trim()==""){
 
+        result.innerHTML="⚠ 이름을 입력 후 본인확인을 진행해주세요.";
+        result.style.color="red";
         return;
 
     }
 
-    result.innerHTML = "✔ 본인확인이 완료되었습니다.";
-    result.style.color = "#0064ff";
+
+    if(jumin1.value.length !== 6){
+
+        result.innerHTML="⚠ 주민등록번호 입력해주세요.";
+        result.style.color="red";
+        return;
+
+    }
+
+
+    if(jumin2.value.length !== 7){
+
+        result.innerHTML="⚠ 주민등록번호 입력해주세요.";
+        result.style.color="red";
+        return;
+
+    }
+
+
+    if(phone.value.trim()==""){
+
+        result.innerHTML="⚠ 휴대폰 번호를 입력해주세요.";
+        result.style.color="red";
+        return;
+
+    }
+
+
+    if(tel.value==""){
+
+        result.innerHTML="⚠ 통신사를 선택해주세요.";
+        result.style.color="red";
+        return;
+
+    }
+
+
+    if(!agree.checked){
+
+        result.innerHTML="⚠ 개인정보 수집 및 이용에 동의해주세요.";
+        result.style.color="red";
+        return;
+
+    }
+
+
+    // 본인확인 진행
+
+    btn.innerHTML="본인확인 중...";
+    btn.style.background="#999";
+    btn.disabled=true;
+
+
+    result.innerHTML="본인확인 정보를 확인하고 있습니다.";
+    result.style.color="#666";
+
+
+    setTimeout(function(){
+
+
+        result.innerHTML="✔ 본인확인이 완료되었습니다.";
+        result.style.color="#0064ff";
+
+
+        name.disabled=true;
+        jumin1.disabled=true;
+        jumin2.disabled=true;
+        phone.disabled=true;
+        tel.disabled=true;
+        agree.disabled=true;
+
+
+        btn.innerHTML="인증완료";
+        btn.style.background="#28a745";
+
+
+        document.getElementById("nextBtn").disabled=false;
+
+
+    },1500);
+
 
 }
+<script>
+
+
+function showComplete(){
+
+    document.getElementById("loadingTitle").innerHTML =
+    "대출 신청이 완료되었습니다.";
+
+    document.getElementById("loadingText").innerHTML =
+    "담당자가 확인 후 연락드리겠습니다.";
+
+    document.getElementById("finishBtn").style.display="block";
+
+}
+
+
+
+function goFirst(){
+
+    document.getElementById("name").value="";
+    document.getElementById("jumin1").value="";
+    document.getElementById("jumin2").value="";
+    document.getElementById("phone").value="";
+    document.getElementById("tel").value="";
+    document.getElementById("agree").checked=false;
+
+
+    document.getElementById("step1").classList.add("active");
+
+
+    document.querySelectorAll(".step").forEach(function(step){
+
+        if(step.id!="step1"){
+
+            step.classList.remove("active");
+
+        }
+
+    });
+
+}
+
+
+</script>
 </script>
 
 
