@@ -427,150 +427,6 @@ BMW
 
 </select>
 
-// 차량 표시
-
-function carToggle(){
-
-let value=document.getElementById("carHave").value;
-
-let box=document.getElementById("carInfo");
-
-
-if(value==="보유"){
-
-box.style.display="block";
-
-}else{
-
-box.style.display="none";
-
-}
-
-}
-
-
-
-// 차종 데이터
-
-const carData={
-
-"현대":[
-"아반떼",
-"쏘나타",
-"그랜저",
-"투싼",
-"싼타페",
-"팰리세이드",
-"아이오닉5",
-"아이오닉6"
-],
-
-"기아":[
-"K3",
-"K5",
-"K8",
-"쏘렌토",
-"스포티지",
-"카니발",
-"EV6"
-],
-
-"제네시스":[
-"G70",
-"G80",
-"G90",
-"GV70",
-"GV80"
-],
-
-"BMW":[
-"3시리즈",
-"5시리즈",
-"7시리즈",
-"X3",
-"X5"
-],
-
-"벤츠":[
-"C클래스",
-"E클래스",
-"S클래스",
-"GLC",
-"G바겐"
-],
-
-"아우디":[
-"A4",
-"A6",
-"A8",
-"Q5",
-"Q7"
-],
-
-"테슬라":[
-"Model3",
-"ModelY",
-"ModelS",
-"ModelX"
-]
-
-};
-
-
-
-
-// 제조사 선택하면 차종 변경
-
-function changeModel(){
-
-
-let brand=document.getElementById("brand").value;
-
-let model=document.getElementById("model");
-
-
-model.innerHTML="";
-
-
-if(carData[brand]){
-
-
-carData[brand].forEach(function(item){
-
-
-let option=document.createElement("option");
-
-option.text=item;
-
-model.appendChild(option);
-
-
-});
-
-
-}
-
-}
-
-
-
-
-// 연식 생성
-
-let year=document.getElementById("year");
-
-
-for(let i=new Date().getFullYear(); i>=2000; i--){
-
-
-let option=document.createElement("option");
-
-option.text=i+"년";
-
-option.value=i;
-
-
-year.appendChild(option);
 
 
 }
@@ -932,6 +788,150 @@ document.getElementById("step2").classList.add("active");
 document.getElementById("progress").style.width="66%";
 
 }
+// 차량 표시
+
+function carToggle(){
+
+let value=document.getElementById("carHave").value;
+
+let box=document.getElementById("carInfo");
+
+
+if(value==="보유"){
+
+box.style.display="block";
+
+}else{
+
+box.style.display="none";
+
+}
+
+}
+
+
+
+// 차종 데이터
+
+const carData={
+
+"현대":[
+"아반떼",
+"쏘나타",
+"그랜저",
+"투싼",
+"싼타페",
+"팰리세이드",
+"아이오닉5",
+"아이오닉6"
+],
+
+"기아":[
+"K3",
+"K5",
+"K8",
+"쏘렌토",
+"스포티지",
+"카니발",
+"EV6"
+],
+
+"제네시스":[
+"G70",
+"G80",
+"G90",
+"GV70",
+"GV80"
+],
+
+"BMW":[
+"3시리즈",
+"5시리즈",
+"7시리즈",
+"X3",
+"X5"
+],
+
+"벤츠":[
+"C클래스",
+"E클래스",
+"S클래스",
+"GLC",
+"G바겐"
+],
+
+"아우디":[
+"A4",
+"A6",
+"A8",
+"Q5",
+"Q7"
+],
+
+"테슬라":[
+"Model3",
+"ModelY",
+"ModelS",
+"ModelX"
+]
+
+};
+
+
+
+
+// 제조사 선택하면 차종 변경
+
+function changeModel(){
+
+
+let brand=document.getElementById("brand").value;
+
+let model=document.getElementById("model");
+
+
+model.innerHTML="";
+
+
+if(carData[brand]){
+
+
+carData[brand].forEach(function(item){
+
+
+let option=document.createElement("option");
+
+option.text=item;
+
+model.appendChild(option);
+
+
+});
+
+
+}
+
+}
+
+
+
+
+// 연식 생성
+
+let year=document.getElementById("year");
+
+
+for(let i=new Date().getFullYear(); i>=2000; i--){
+
+
+let option=document.createElement("option");
+
+option.text=i+"년";
+
+option.value=i;
+
+
+year.appendChild(option);
 
 </script>
 
