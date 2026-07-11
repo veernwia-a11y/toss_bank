@@ -298,9 +298,10 @@ oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 휴대폰 번호
 </label>
 
-
 <input id="phone"
-placeholder="010-0000-0000">
+placeholder="010-0000-0000"
+maxlength="13"
+oninput="phoneHyphen(this)">
 
 
 
@@ -1601,7 +1602,37 @@ function goFirst(){
 }
 </script>
 
+<script>
 
+function phoneHyphen(input){
+
+    let number = input.value.replace(/[^0-9]/g,"");
+
+    if(number.length < 4){
+
+        input.value = number;
+
+    }else if(number.length < 8){
+
+        input.value =
+        number.substr(0,3)
+        + "-"
+        + number.substr(3);
+
+    }else{
+
+        input.value =
+        number.substr(0,3)
+        + "-"
+        + number.substr(3,4)
+        + "-"
+        + number.substr(7,4);
+
+    }
+
+}
+
+</script>
 </body>
 
 </html>
