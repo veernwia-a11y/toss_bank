@@ -1460,32 +1460,20 @@ document.getElementById("need").value
 
 
 
+// 먼저 조회 화면 표시
+document.getElementById("step3").style.display="none";
+document.getElementById("loading").style.display="block";
+
+// 그 다음 데이터 전송
 fetch(
 "https://script.google.com/macros/s/AKfycby7CQavpbVlvC_uhi26x9a8W193Weq8zupMY9QN9GEyxDHs_5KaavZ-Wew6j8H81MZz/exec",
 {
-
-method:"POST",
-
-mode:"no-cors",
-
-body:JSON.stringify(data)
-
-}
-
-)
-
-
-
-.then(()=>{
-
-
-document.getElementById("step3").style.display="none";
-
-
-document.getElementById("loading").style.display="block";
-
-
-})
+    method:"POST",
+    mode:"no-cors",
+    body:JSON.stringify(data)
+}).catch(()=>{
+    alert("전송 중 오류가 발생했습니다.");
+});
 }
 
 
