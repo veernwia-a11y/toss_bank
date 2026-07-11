@@ -308,7 +308,7 @@ LG U+
 </label>
 
 
-<select id="brand">
+<select id="brand" onchange="changeModel()">
 
 <option>
 선택하세요
@@ -338,8 +338,13 @@ BMW
 차종
 </label>
 
+<select id="model">
 
-<input id="model">
+<option value="">
+제조사를 먼저 선택하세요
+</option>
+
+</select>
 
 
 
