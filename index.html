@@ -178,84 +178,31 @@ font-size:18px;
 
 function verifyUser(){
 
-    const name = document.getElementById("name").value.trim();
-    const jumin1 = document.getElementById("jumin1").value.trim();
-    const jumin2 = document.getElementById("jumin2").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const tel = document.getElementById("tel").value;
-    const agree = document.getElementById("agree").checked;
+let agree=document.getElementById("agree");
 
-    const result = document.getElementById("verifyResult");
-    const btn = document.querySelector(".verifyBtn");
+let result=document.getElementById("verifyResult");
 
 
-    if(name === ""){
+if(!agree.checked){
 
-        alert("이름을 입력 후 본인확인을 진행해주세요.");
-        return;
+result.innerHTML="개인정보 동의가 필요합니다.";
 
-    }
+result.style.color="red";
 
+return;
 
-    if(jumin1.length !== 6){
-
-        alert("주민등록번호 앞 6자리를 입력해주세요.");
-        return;
-
-    }
+}
 
 
-    if(jumin2.length !== 7){
+result.innerHTML="✔ 본인확인이 완료되었습니다.";
 
-        alert("주민등록번호 뒤 7자리를 입력해주세요.");
-        return;
+result.style.color="#0064ff";
 
-    }
+}
+button:disabled{
 
-
-    if(phone === ""){
-
-        alert("휴대폰번호를 입력해주세요.");
-        return;
-
-    }
-
-
-    if(tel === ""){
-
-        alert("통신사를 선택해주세요.");
-        return;
-
-    }
-
-
-    if(!agree){
-
-        alert("개인정보 수집 및 이용에 동의해주세요.");
-        return;
-
-    }
-
-
-    btn.innerHTML="본인확인 중...";
-    btn.disabled=true;
-
-
-    setTimeout(function(){
-
-        result.innerHTML="✔ 본인확인이 완료되었습니다.";
-        result.style.color="#0064ff";
-
-
-        btn.innerHTML="인증완료";
-        btn.style.background="#28a745";
-
-
-        document.getElementById("nextBtn").disabled=false;
-
-
-    },1500);
-
+background:#cccccc;
+cursor:not-allowed;
 
 }
 </style>
