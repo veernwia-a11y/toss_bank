@@ -1627,8 +1627,21 @@ function goFirst(){
 
 }
 
+window.onload = function(){
 
-</script>
+    let btn = document.querySelector(".verifyBtn");
+
+    if(btn){
+
+        btn.disabled = false;
+
+        btn.style.pointerEvents = "auto";
+
+        btn.style.opacity = "1";
+
+    }
+
+};
 </script>
 
 
