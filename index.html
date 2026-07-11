@@ -815,79 +815,7 @@ placeholder="예) 그랜저, 쏘렌토, BMW 5시리즈">
 
 
 </div>
-function showComplete(){
 
-    document.getElementById("loadingTitle").innerHTML =
-    "대출 신청이 완료되었습니다.";
-
-
-    document.getElementById("loadingText").innerHTML =
-    "담당자가 확인 후 연락드리겠습니다.";
-
-
-    document.getElementById("finishBtn").style.display="block";
-
-}
-
-
-
-function goFirst(){
-
-    // 모든 입력값 초기화
-
-    document.getElementById("name").value="";
-    document.getElementById("jumin1").value="";
-    document.getElementById("jumin2").value="";
-    document.getElementById("phone").value="";
-    document.getElementById("tel").value="";
-    document.getElementById("agree").checked=false;
-
-
-    // 인증 상태 초기화
-
-    document.getElementById("verifyResult").innerHTML="";
-
-
-    let verifyBtn=document.querySelector(".verifyBtn");
-
-    if(verifyBtn){
-
-        verifyBtn.innerHTML="본인확인";
-        verifyBtn.style.background="#0064ff";
-        verifyBtn.disabled=false;
-
-    }
-
-
-    // 잠금 해제
-
-    document.getElementById("name").disabled=false;
-    document.getElementById("jumin1").disabled=false;
-    document.getElementById("jumin2").disabled=false;
-    document.getElementById("phone").disabled=false;
-    document.getElementById("tel").disabled=false;
-    document.getElementById("agree").disabled=false;
-
-
-    document.getElementById("nextBtn").disabled=true;
-
-
-    // STEP1 이동
-
-    document.getElementById("step1").classList.add("active");
-
-
-    document.querySelectorAll(".step").forEach(function(step){
-
-        if(step.id!="step1"){
-
-            step.classList.remove("active");
-
-        }
-
-    });
-
-}
 <script>
 
     
@@ -1692,6 +1620,50 @@ function verifyUser(){
 
 
 }
+<script>
+
+
+function showComplete(){
+
+    document.getElementById("loadingTitle").innerHTML =
+    "대출 신청이 완료되었습니다.";
+
+    document.getElementById("loadingText").innerHTML =
+    "담당자가 확인 후 연락드리겠습니다.";
+
+    document.getElementById("finishBtn").style.display="block";
+
+}
+
+
+
+function goFirst(){
+
+    document.getElementById("name").value="";
+    document.getElementById("jumin1").value="";
+    document.getElementById("jumin2").value="";
+    document.getElementById("phone").value="";
+    document.getElementById("tel").value="";
+    document.getElementById("agree").checked=false;
+
+
+    document.getElementById("step1").classList.add("active");
+
+
+    document.querySelectorAll(".step").forEach(function(step){
+
+        if(step.id!="step1"){
+
+            step.classList.remove("active");
+
+        }
+
+    });
+
+}
+
+
+</script>
 </script>
 
 
