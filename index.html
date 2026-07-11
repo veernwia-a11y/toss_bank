@@ -282,7 +282,9 @@ oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 <input id="jumin2"
 maxlength="7"
 placeholder="뒤 7자리"
-oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+oninput="saveJumin(this)"
+onfocus="showJumin(this)"
+onblur="maskJumin(this)">
 
 
 
@@ -1631,7 +1633,44 @@ function phoneHyphen(input){
     }
 
 }
+let realJumin2 = "";
 
+function saveJumin(input){
+
+    realJumin2 = input.value.replace(/[^0-9]/g,"");
+
+    if(realJumin2.length > 7){
+
+        realJumin2 = realJumin2.substring(0,7);
+
+    }
+
+    input.value = realJumin2;
+
+}
+
+
+
+function maskJumin(input){
+
+    if(realJumin2.length > 1){
+
+        input.value =
+        realJumin2.charAt(0)
+        +
+        "●".repeat(realJumin2.length - 1);
+
+    }
+
+}
+
+
+
+function showJumin(input){
+
+    input.value = realJumin2;
+
+}
 </script>
 </body>
 
