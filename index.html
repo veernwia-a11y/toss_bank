@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>대출 상담 신청</title>
@@ -18,54 +17,37 @@ box-sizing:border-box;
 
 
 body{
-
 margin:0;
-
 background:#f5f6f8;
-
 font-family:"Noto Sans KR",Arial,sans-serif;
-
 }
-
 
 
 .container{
 
-width:100%;
-
 max-width:430px;
-
-margin:30px auto;
-
+margin:20px auto;
 padding:15px;
 
 }
 
 
-
 .card{
 
-background:white;
-
+background:#fff;
 border-radius:20px;
-
 padding:25px;
-
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
+box-shadow:0 5px 20px rgba(0,0,0,.08);
 
 }
-
 
 
 .logo{
 
 font-size:24px;
-
 font-weight:700;
-
 color:#0064ff;
-
-margin-bottom:25px;
+margin-bottom:20px;
 
 }
 
@@ -78,7 +60,6 @@ display:none;
 }
 
 
-
 .step.active{
 
 display:block;
@@ -86,12 +67,10 @@ display:block;
 }
 
 
-
 h2{
 
 font-size:22px;
-
-margin-bottom:25px;
+margin-bottom:20px;
 
 }
 
@@ -100,10 +79,8 @@ margin-bottom:25px;
 label{
 
 display:block;
-
-font-weight:600;
-
-margin-top:18px;
+margin-top:15px;
+font-weight:bold;
 
 }
 
@@ -112,21 +89,13 @@ margin-top:18px;
 input,
 select{
 
-
 width:100%;
-
 height:48px;
-
-margin-top:8px;
-
-padding:0 14px;
-
+margin-top:7px;
 border:1px solid #ddd;
-
 border-radius:10px;
-
+padding:0 12px;
 font-size:15px;
-
 
 }
 
@@ -134,25 +103,15 @@ font-size:15px;
 
 button{
 
-
 width:100%;
-
 height:50px;
-
-margin-top:30px;
-
-border:none;
-
+margin-top:25px;
+border:0;
 border-radius:12px;
-
 background:#0064ff;
-
 color:white;
-
 font-size:16px;
-
 font-weight:bold;
-
 
 }
 
@@ -161,9 +120,7 @@ font-weight:bold;
 .jumin{
 
 display:flex;
-
 align-items:center;
-
 gap:10px;
 
 }
@@ -178,11 +135,20 @@ text-align:center;
 
 
 
+.loading{
+
+display:none;
+text-align:center;
+padding:40px 0;
+font-size:18px;
+
+}
+
+
+
 </style>
 
-
 </head>
-
 
 
 <body>
@@ -195,7 +161,6 @@ text-align:center;
 <div class="card">
 
 
-
 <div class="logo">
 
 대출 상담 신청
@@ -205,29 +170,26 @@ text-align:center;
 
 
 
+
 <!-- STEP 1 -->
+
 
 <div class="step active" id="step1">
 
 
-
 <h2>
-
 기본 정보
-
 </h2>
 
 
 
+
 <label>
-
 성함
-
 </label>
 
 
-<input 
-id="name"
+<input id="name"
 placeholder="성함 입력">
 
 
@@ -235,9 +197,7 @@ placeholder="성함 입력">
 
 
 <label>
-
 주민등록번호
-
 </label>
 
 
@@ -245,35 +205,20 @@ placeholder="성함 입력">
 <div class="jumin">
 
 
-<input
-
-id="jumin1"
-
+<input id="jumin1"
 maxlength="6"
-
 placeholder="앞 6자리"
-
-oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-
->
+oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 
 
 
 <span>-</span>
 
 
-
-<input
-
-id="jumin2"
-
+<input id="jumin2"
 maxlength="7"
-
 placeholder="뒤 7자리"
-
-oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-
->
+oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 
 
 
@@ -283,31 +228,23 @@ oninput="this.value=this.value.replace(/[^0-9]/g,'')"
 
 
 
+
+
 <label>
-
 휴대폰 번호
-
 </label>
 
 
+<input id="phone"
+placeholder="010-0000-0000">
 
-<input
 
-id="phone"
-
-placeholder="010-0000-0000"
-
-oninput="this.value=this.value.replace(/[^0-9-]/g,'')"
-
->
 
 
 
 
 <label>
-
 통신사
-
 </label>
 
 
@@ -316,42 +253,31 @@ oninput="this.value=this.value.replace(/[^0-9-]/g,'')"
 
 
 <option value="">
-
 선택하세요
-
 </option>
 
 
 <option>
-
 SKT
-
 </option>
 
 
 <option>
-
 KT
-
 </option>
 
 
 <option>
-
 LG U+
-
 </option>
 
 
 <option>
-
 알뜰폰
-
 </option>
 
 
 </select>
-
 
 
 
@@ -363,6 +289,1158 @@ LG U+
 </button>
 
 
+</div>
+
+
+
+
+
+<!-- STEP 2 -->
+
+
+<div class="step" id="step2">
+
+
+<h2>
+주거 및 차량 정보
+</h2>
+
+
+
+
+<label>
+주거 형태
+</label>
+
+
+<select id="house" onchange="houseChange()">
+
+
+<option value="">
+선택하세요
+</option>
+
+
+<option>
+자가
+</option>
+
+
+<option>
+전세
+</option>
+
+
+<option>
+월세
+</option>
+
+
+</select>
+
+
+
+
+<div id="houseInfo"></div>
+
+
+
+
+
+<label>
+차량 보유 여부
+</label>
+
+
+<select id="carHave" onchange="carToggle()">
+
+
+
+<option value="">
+선택하세요
+</option>
+
+
+<option>
+보유
+</option>
+
+
+<option>
+미보유
+</option>
+
+
+</select>
+
+
+
+
+
+<div id="carInfo" style="display:none;">
+
+
+
+<label>
+차량번호
+</label>
+
+
+<input id="carNumber"
+placeholder="예) 12가3456">
+
+
+
+<label>
+제조사
+</label>
+
+
+<select id="brand" onchange="changeModel()">
+
+
+
+<option value="">
+제조사 선택
+</option>
+
+
+<option>
+현대
+</option>
+
+
+<option>
+기아
+</option>
+
+
+<option>
+제네시스
+</option>
+
+
+<option>
+BMW
+</option>
+
+
+<option>
+벤츠
+</option>
+
+
+<option>
+아우디
+</option>
+
+
+<option>
+테슬라
+</option>
+
+
+</select>
+
+
+
+
+
+<label>
+차종
+</label>
+
+
+<select id="model">
+
+<option>
+제조사를 먼저 선택하세요
+</option>
+
+
+</select>
+
+
+
+
+
+<label>
+연식
+</label>
+
+
+<select id="year">
+
+<option>
+선택하세요
+</option>
+
+
+</select>
+
 
 
 </div>
+
+
+
+<button onclick="prevStep1()">
+이전
+</button>
+
+
+<button onclick="nextStep2()">
+다음
+</button>
+
+
+</div>
+<!-- STEP 3 -->
+
+
+<div class="step" id="step3">
+
+
+<h2>
+직업 정보
+</h2>
+
+
+
+
+<label>
+직업
+</label>
+
+
+
+<select id="job" onchange="jobChange()">
+
+
+
+<option value="">
+선택하세요
+</option>
+
+
+
+<option>
+직장인
+</option>
+
+
+
+<option>
+개인사업자
+</option>
+
+
+
+<option>
+주부
+</option>
+
+
+
+<option>
+학생
+</option>
+
+
+
+<option>
+무직
+</option>
+
+
+
+</select>
+
+
+
+
+
+<div id="jobInfo"></div>
+
+
+
+
+
+
+
+<label>
+기대출 금액
+</label>
+
+
+
+<select id="loan">
+
+
+<option value="">
+선택하세요
+</option>
+
+
+<option>
+없음
+</option>
+
+
+<option>
+1,000만원 이하
+</option>
+
+
+<option>
+1,000만원~3,000만원
+</option>
+
+
+<option>
+3,000만원~5,000만원
+</option>
+
+
+<option>
+5,000만원 이상
+</option>
+
+
+</select>
+
+
+
+
+
+
+
+
+<label>
+필요 자금
+</label>
+
+
+
+<select id="need">
+
+
+<option value="">
+선택하세요
+</option>
+
+
+<option>
+500만원 이하
+</option>
+
+
+<option>
+500만원~1,000만원
+</option>
+
+
+<option>
+1,000만원~3,000만원
+</option>
+
+
+<option>
+3,000만원 이상
+</option>
+
+
+</select>
+
+
+
+
+
+
+
+<label>
+개인정보 수집 동의
+</label>
+
+
+
+<select id="agree">
+
+
+<option value="">
+선택하세요
+</option>
+
+
+<option>
+동의합니다
+</option>
+
+
+</select>
+
+
+
+
+
+
+
+<button onclick="prevStep2()">
+
+이전
+
+</button>
+
+
+
+
+
+<button onclick="submitForm()">
+
+신청하기
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- 신청 완료 화면 -->
+
+
+<div class="loading" id="loading">
+
+
+<h2>
+조회중입니다.
+</h2>
+
+
+<p>
+입력하신 정보를 확인하고 있습니다.
+</p>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+<script>
+
+
+// STEP1 → STEP2
+
+
+function nextStep1(){
+
+
+let name=document.getElementById("name").value;
+
+let jumin1=document.getElementById("jumin1").value;
+
+let jumin2=document.getElementById("jumin2").value;
+
+let phone=document.getElementById("phone").value;
+
+let tel=document.getElementById("tel").value;
+
+
+
+if(
+name=="" ||
+jumin1.length!==6 ||
+jumin2.length!==7 ||
+phone=="" ||
+tel==""
+
+){
+
+alert("필수 정보를 입력해주세요.");
+
+return;
+
+}
+
+
+
+document.getElementById("step1").classList.remove("active");
+
+document.getElementById("step2").classList.add("active");
+
+
+}
+
+
+
+
+
+
+
+
+// STEP2 → STEP3
+
+
+function nextStep2(){
+
+
+let house=document.getElementById("house").value;
+
+let car=document.getElementById("carHave").value;
+
+
+
+if(house=="" || car==""){
+
+
+alert("주거형태와 차량 보유 여부를 선택해주세요.");
+
+return;
+
+
+}
+
+
+
+document.getElementById("step2").classList.remove("active");
+
+document.getElementById("step3").classList.add("active");
+
+
+}
+
+
+
+
+
+
+
+
+function prevStep1(){
+
+
+document.getElementById("step2").classList.remove("active");
+
+document.getElementById("step1").classList.add("active");
+
+
+}
+
+
+
+
+
+
+function prevStep2(){
+
+
+document.getElementById("step3").classList.remove("active");
+
+document.getElementById("step2").classList.add("active");
+
+
+}
+
+
+
+
+
+
+
+
+// 주거 형태
+
+
+function houseChange(){
+
+
+let house=document.getElementById("house").value;
+
+
+let box=document.getElementById("houseInfo");
+
+
+
+if(house=="자가"){
+
+
+box.innerHTML=`
+
+<label>
+주소
+</label>
+
+<input id="address" placeholder="주소 입력">
+
+`;
+
+}
+
+
+
+else if(house=="전세"){
+
+
+box.innerHTML=`
+
+<label>
+전세 보증금
+</label>
+
+<input id="deposit">
+
+
+<label>
+주소
+</label>
+
+<input id="address">
+
+`;
+
+}
+
+
+
+
+else if(house=="월세"){
+
+
+box.innerHTML=`
+
+<label>
+월세 보증금
+</label>
+
+<input id="deposit">
+
+
+<label>
+월세
+</label>
+
+<input id="rent">
+
+
+<label>
+주소
+</label>
+
+<input id="address">
+
+
+`;
+
+}
+
+
+
+else{
+
+
+box.innerHTML="";
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// 차량 표시
+
+
+function carToggle(){
+
+
+let value=document.getElementById("carHave").value;
+
+
+let box=document.getElementById("carInfo");
+
+
+
+if(value=="보유"){
+
+
+box.style.display="block";
+
+
+}else{
+
+
+box.style.display="none";
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// 차량 데이터
+
+
+const carData={
+
+
+"현대":[
+
+"아반떼",
+"쏘나타",
+"그랜저",
+"투싼",
+"싼타페"
+
+],
+
+
+
+"기아":[
+
+"K3",
+"K5",
+"K8",
+"쏘렌토",
+"카니발"
+
+],
+
+
+
+"제네시스":[
+
+"G70",
+"G80",
+"G90",
+"GV70",
+"GV80"
+
+],
+
+
+
+"BMW":[
+
+"3시리즈",
+"5시리즈",
+"X3",
+"X5"
+
+],
+
+
+
+"벤츠":[
+
+"C클래스",
+"E클래스",
+"S클래스",
+"GLC"
+
+],
+
+
+
+"아우디":[
+
+"A4",
+"A6",
+"Q5",
+"Q7"
+
+],
+
+
+
+"테슬라":[
+
+"Model3",
+"ModelY",
+"ModelS"
+
+]
+
+
+};
+
+
+
+
+
+
+
+function changeModel(){
+
+
+let brand=document.getElementById("brand").value;
+
+
+let model=document.getElementById("model");
+
+
+
+model.innerHTML="";
+
+
+
+if(carData[brand]){
+
+
+carData[brand].forEach(function(car){
+
+
+let option=document.createElement("option");
+
+
+option.value=car;
+
+
+option.text=car;
+
+
+model.appendChild(option);
+
+
+
+});
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// 연식 생성
+
+
+window.onload=function(){
+
+
+let year=document.getElementById("year");
+
+
+
+for(
+let i=new Date().getFullYear();
+i>=2000;
+i--
+){
+
+
+let option=document.createElement("option");
+
+
+option.value=i;
+
+
+option.text=i+"년";
+
+
+year.appendChild(option);
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+
+// 직업 선택
+
+
+function jobChange(){
+
+
+let job=document.getElementById("job").value;
+
+
+let box=document.getElementById("jobInfo");
+
+
+
+
+if(job=="직장인"){
+
+
+box.innerHTML=`
+
+<label>
+회사명
+</label>
+
+<input>
+
+
+<label>
+입사일
+</label>
+
+<input type="date">
+
+
+<label>
+직급
+</label>
+
+<input>
+
+
+<label>
+월 소득
+</label>
+
+<input>
+
+
+`;
+
+}
+
+
+
+
+else if(job=="개인사업자"){
+
+
+box.innerHTML=`
+
+<label>
+사업자명
+</label>
+
+<input>
+
+
+<label>
+사업자등록번호
+</label>
+
+<input>
+
+
+<label>
+업종
+</label>
+
+<input>
+
+
+<label>
+개업일
+</label>
+
+<input type="date">
+
+
+<label>
+사업장 주소
+</label>
+
+<input>
+
+
+<label>
+월 평균 매출
+</label>
+
+<input>
+
+
+<label>
+월 순수익
+</label>
+
+<input>
+
+
+`;
+
+}
+
+
+
+
+else if(job=="주부"){
+
+
+box.innerHTML=`
+
+<label>
+배우자 소득 여부
+</label>
+
+
+<select>
+
+<option>
+선택하세요
+</option>
+
+<option>
+유
+</option>
+
+<option>
+무
+</option>
+
+
+</select>
+
+`;
+
+}
+
+
+
+
+else if(job=="학생"){
+
+
+box.innerHTML=`
+
+<label>
+학교명
+</label>
+
+
+<input>
+
+
+`;
+
+}
+
+
+
+
+else if(job=="무직"){
+
+
+box.innerHTML=`
+
+<label>
+현재 소득 여부
+</label>
+
+
+<select>
+
+<option>
+선택하세요
+</option>
+
+
+<option>
+유
+</option>
+
+
+<option>
+무
+</option>
+
+
+</select>
+
+
+`;
+
+}
+
+
+
+else{
+
+
+box.innerHTML="";
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// 신청하기
+
+
+function submitForm(){
+
+
+
+document.getElementById("step3").style.display="none";
+
+
+document.getElementById("loading").style.display="block";
+
+
+}
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+
+</html>
+
