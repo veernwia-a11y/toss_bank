@@ -1500,7 +1500,24 @@ alert("전송 오류가 발생했습니다.");
 
 
 
+function verifyUser(){
 
+    const agree = document.getElementById("agree");
+    const result = document.getElementById("verifyResult");
+
+    if(!agree.checked){
+
+        result.innerHTML = "⚠ 개인정보 수집 및 이용에 동의해주세요.";
+        result.style.color = "red";
+
+        return;
+
+    }
+
+    result.innerHTML = "✔ 본인확인이 완료되었습니다.";
+    result.style.color = "#0064ff";
+
+}
 </script>
 
 
