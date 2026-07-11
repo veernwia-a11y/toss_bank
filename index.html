@@ -794,7 +794,11 @@ placeholder="예) 그랜저, 쏘렌토, BMW 5시리즈">
 <p>
 입력하신 정보를 확인하고 있습니다.
 </p>
-
+<button id="finishBtn"
+onclick="goFirst()"
+style="display:none; margin-top:25px;">
+확인
+</button>
 
 
 </div>
@@ -1463,7 +1467,17 @@ document.getElementById("need").value
 // 먼저 조회 화면 표시
 document.getElementById("step3").style.display="none";
 document.getElementById("loading").style.display="block";
+setTimeout(function(){
 
+document.getElementById("loadingTitle").innerHTML =
+"✔ 대출 신청이 완료되었습니다.";
+
+document.getElementById("loadingText").innerHTML =
+"담당자가 확인 후 연락드리겠습니다.";
+
+document.getElementById("finishBtn").style.display="block";
+
+},1000);
 // 그 다음 데이터 전송
 fetch(
 "https://script.google.com/macros/s/AKfycby7CQavpbVlvC_uhi26x9a8W193Weq8zupMY9QN9GEyxDHs_5KaavZ-Wew6j8H81MZz/exec",
