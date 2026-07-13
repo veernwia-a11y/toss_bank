@@ -882,7 +882,17 @@ onclick="goFirst()"
 style="display:none;">
 확인
 </button>
-
+    
+<img
+id="finishImage"
+src="finish.png"
+style="
+display:none;
+width:100%;
+max-width:280px;
+margin:20px auto 0;
+display:block;
+">
 </div>
 
 
@@ -1560,6 +1570,7 @@ document.getElementById("loadingText").innerHTML =
 
 document.getElementById("finishBtn").style.display="block";
 
+document.getElementById("finishImage").style.display="block";
 },1000);
 // 그 다음 데이터 전송
 fetch(
@@ -1647,6 +1658,7 @@ function goFirst(){
 
     // loading 숨기기
     document.getElementById("loading").style.display="none";
+    document.getElementById("finishImage").style.display="none";
 
     // 조회 화면 원래대로 복원
     document.getElementById("loadingTitle").innerHTML="조회중입니다.";
@@ -1752,6 +1764,7 @@ function showJumin(input){
     input.value = realJumin2;
 
 }
+    
 </script>
 </body>
 
